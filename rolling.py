@@ -11,10 +11,11 @@ def running_view(arr, window, axis=-1):
     shape = list(arr.shape)
     shape[axis] -= (window-1)
     assert(shape[axis]>0)
+    np_arr = arr.to_numpy()
     return np.lib.index_tricks.as_strided(
         arr,
         shape + [window],
-        arr.strides + (arr.strides[axis],),
+        np_arr.strides + (np_arr.strides[axis],),
         writeable=False
     )
 
