@@ -136,7 +136,7 @@ class Rolling(object):
         fcast = np.zeros(fcast_len)
         for i in range(fcast_len):
             X = self.extract_features(previous_values, fcast_date, metadata)
-            y = predictor([X])[0]
+            y = predictor(np.array(X).reshape((1,-1)))[0]
             fcast[i] = y
             fcast_date += datetime.timedelta(days=1)
 
